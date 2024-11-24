@@ -1,0 +1,15 @@
+name: Build_Windows
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: laytan/setup-odin@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # This was added because setup-odin said to.
+      - uses: actions/checkout@v4
+      - name: Odin build
+        run: odin build .
